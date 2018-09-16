@@ -33,7 +33,9 @@ class Singleton1 {
 
     public boolean isPrefCreated(String name){
         mSharedPrefrence = context.getSharedPreferences(Constants.MYPREF, Activity.MODE_PRIVATE);
-        return (mSharedPrefrence.contains(name))? true:false;
+        boolean created = (mSharedPrefrence.contains(name))? true:false;
+        return created;
+
     }
 
 
@@ -45,7 +47,7 @@ class Singleton1 {
             editor.commit();
 
         }else {
-            setmSharedPrefrence();
+            //setmSharedPrefrence();
             System.out.println("Tunde about to be ");
             SharedPreferences.Editor editor = mSharedPrefrence.edit();
             editor.putString("test","init");
@@ -61,7 +63,7 @@ class Singleton1 {
 
     public String getPrefKey(String key){
         setmSharedPrefrence();
-        String value = mSharedPrefrence.getString(key,"");
+        String value = mSharedPrefrence.getString(key,"{}");
         return value;
     }
     public File getPhotoFile(String name){
@@ -71,6 +73,8 @@ class Singleton1 {
         }
         return  new File(externalFileDir,name);
     }
+
+
 
 
     //INstanstiate shared prfremce table student staff

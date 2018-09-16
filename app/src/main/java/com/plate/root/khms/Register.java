@@ -8,12 +8,10 @@ import java.io.IOException;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -23,14 +21,18 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
-public class MainActivity extends Activity {
+public class Register extends Activity {
     ImageView imVCature_pic;
     Button btnCapture;
     File filedir,file;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //Test
+        String f =new Jasonparsee(getBaseContext()).loadJSONFromAsset();
         initializeControls();
     }
 
@@ -43,7 +45,7 @@ public class MainActivity extends Activity {
             //imVCature_pic.setImageBitmap();
             Toast.makeText(getBaseContext(),"File exist",Toast.LENGTH_SHORT).show();
             System.out.println("Tunde File exist "+file.toString());
-            Glide.with(MainActivity.this)
+            Glide.with(Register.this)
                     .load(file.toString())
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .skipMemoryCache(true)
@@ -61,7 +63,7 @@ public class MainActivity extends Activity {
 //                file = new File(filedir.toString(), "img.jpg");
 //                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
 //                startActivityForResult(intent, 1);
-                Intent intent = new Intent(MainActivity.this,BarcodeAttendance.class);
+                Intent intent = new Intent(Register.this,BarcodeAttendance.class);
                 startActivity(intent);
             }
         });
@@ -108,7 +110,7 @@ public class MainActivity extends Activity {
 
             //set image bitmap to image view
             //imVCature_pic.setImageBitmap(thePic);
-            Glide.with(MainActivity.this)
+            Glide.with(Register.this)
                     .load(file.toString())
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .skipMemoryCache(true)
